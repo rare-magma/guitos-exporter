@@ -18,7 +18,9 @@ Bash script that uploads the data from guitos JSON backups to influxdb
 
 ## Instructions
 
-1. Export guitos data as JSON. See instructions here: [guitos](https://github.com/rare-magma/guitos)
+1. Export [guitos.app](https://guitos.app) data as JSON.
+
+   - See instructions here: [guitos](https://github.com/rare-magma/guitos)
 
    - Note that each budget name should follow this format: `YYYY-MM` `(2023-12)` otherwise it won't be possible to parse correctly the period that it corresponds to.
 
@@ -45,7 +47,7 @@ BUCKET='guitos'
 
 - `INFLUXDB_HOST` should be the FQDN of the influxdb server.
 - `ORG` should be the name of the influxdb organization that contains the guitos price data bucket defined below.
-- `BUCKET` should be the name of the influxdb bucket that will hold the guitos price data.
+- `BUCKET` should be the name of the influxdb bucket that will hold the guitos data.
 - `INFLUXDB_API_TOKEN` should be the influxdb API token value.
   - This token should have write access to the `BUCKET` defined above.
 
