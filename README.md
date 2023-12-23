@@ -10,6 +10,8 @@ Bash script that uploads the data from guitos JSON backups to influxdb
 - [gzip](https://www.gnu.org/software/gzip/)
 - [influxdb v2+](https://docs.influxdata.com/influxdb/v2.6/)
 - [jq](https://stedolan.github.io/jq/)
+- Optional:
+  - [docker](https://docs.docker.com/)
 
 ## Relevant documentation
 
@@ -30,15 +32,29 @@ Bash script that uploads the data from guitos JSON backups to influxdb
 
 Example:
 
-```
+```bash
 ./guitos_exporter.sh ~/downloads/guitos-2023-05-23T19_40_19.json
 ```
+
+### Alternatively with Docker
+
+1. Build the docker image.
+
+   ```bash
+   docker build . --tag guitos-exporter
+   ```
+
+1. Run it.
+
+   ```bash
+   docker run --rm --init --tty --interactive --volume $(pwd):/app --volume ~/downloads/guitos-2023-09-18T20_40_20.json:/export.json:ro localhost/guitos-exporter /app/guitos_exporter.sh /export.json
+   ```
 
 ### Configuration file
 
 The configuration file has a few options:
 
-```
+```bash
 INFLUXDB_HOST='influxdb.example.com'
 INFLUXDB_API_TOKEN='ZXhhbXBsZXRva2VuZXhhcXdzZGFzZGptcW9kcXdvZGptcXdvZHF3b2RqbXF3ZHFhc2RhCg=='
 ORG='home'
@@ -55,7 +71,7 @@ BUCKET='guitos'
 
 Run the script manually with bash set to trace:
 
-```
+```bash
 bash -x ./guitos_exporter.sh
 ```
 
@@ -72,7 +88,7 @@ bash -x ./guitos_exporter.sh
 
 ## Exported metrics example
 
-```
+```bash
 guitos,period=2023-05 expenses=600.10 revenue=1000 available=200.10 with_goal=120.20 saved=100 goal=10 reserves=1000 1612134000
 ```
 
@@ -80,7 +96,7 @@ guitos,period=2023-05 expenses=600.10 revenue=1000 available=200.10 with_goal=12
 
 In `grafana-dashboard.json` there is an example of the kind of dashboard that can be built with `guitos-exporter` data:
 
-<img src="dashboard-screenshot.png" title="Example grafana dashboard" width="100%">
+<img src="dashboard-screenshot.png" alt="grafana dashboard screenshot" title="Example grafana dashboard" width="100%">
 
 Import it by doing the following:
 

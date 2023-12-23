@@ -10,7 +10,11 @@ for program in "${dependencies[@]}"; do
     }
 done
 
-source "./guitos_exporter.conf"
+if [[ "${RUNNING_IN_DOCKER}" ]]; then
+    source "/app/guitos_exporter.conf"
+else
+    source "./guitos_exporter.conf"
+fi
 
 [[ -z "${INFLUXDB_HOST}" ]] && echo >&2 "INFLUXDB_HOST is empty. Aborting" && exit 1
 [[ -z "${INFLUXDB_API_TOKEN}" ]] && echo >&2 "INFLUXDB_API_TOKEN is empty. Aborting" && exit 1
