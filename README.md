@@ -47,7 +47,7 @@ Example:
 1. Run it.
 
    ```bash
-   docker run --rm --init --tty --interactive --volume $(pwd):/app --volume ~/downloads/guitos-2023-09-18T20_40_20.json:/export.json:ro localhost/guitos-exporter /app/guitos_exporter.sh /export.json
+   docker run --rm --init --tty --interactive --volume ./guitos_exporter.conf:/app/guitos_exporter.conf:ro --volume ~/downloads/guitos-2023-09-18T20_40_20.json:/export.json:ro ghcr.io/rare-magma/guitos-exporter:latest /export.json
    ```
 
 ### Configuration file

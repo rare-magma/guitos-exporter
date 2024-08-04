@@ -1,0 +1,5 @@
+.github/
+*.conf
+*.png
+*.json
+*.md
