@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:3.23
+FROM --platform=$BUILDPLATFORM docker.io/library/alpine:3.23
 ENV RUNNING_IN_DOCKER=true
 ENTRYPOINT ["/bin/bash"]
 CMD ["/app/guitos_exporter.sh"]
