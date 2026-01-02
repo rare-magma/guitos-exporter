@@ -1,5 +1,3 @@
-.github/
-*.conf
-*.png
-*.json
-*.md
+*
+.*
+!guitos_exporter.sh
